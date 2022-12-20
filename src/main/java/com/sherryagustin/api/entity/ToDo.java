@@ -33,12 +33,12 @@ public class ToDo {
 	@Column(name = "task-deadline")
 	@NotNull
 	@DateTimeFormat( pattern = "mm/dd/yyyy")
-	private Date deadline;
+	private int deadline;
 
 //	@Column(name = "task-status")
 //	private Boolean isDone;
 
-	public ToDo(String taskName, Date deadline) {
+	public ToDo(String taskName, int deadline) {
 		this.taskName = taskName;
 		this.deadline = deadline;
 	}
@@ -59,11 +59,11 @@ public class ToDo {
 		this.taskName = taskName;
 	}
 
-	public Date getDeadline() {
+	public int getDeadline() {
 		return deadline;
 	}
 
-	public void setDeadline(Date deadline) {
+	public void setDeadline(int deadline) {
 		this.deadline = deadline;
 	}
 
