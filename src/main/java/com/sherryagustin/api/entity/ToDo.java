@@ -1,20 +1,13 @@
 package com.sherryagustin.api.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.util.Date;
 
 
+import java.time.LocalDate;
 
 @Data
 @Entity
@@ -32,15 +25,20 @@ public class ToDo {
 
 	@Column(name = "task-deadline")
 	@NotNull
-	@DateTimeFormat( pattern = "mm/dd/yyyy")
-	private int deadline;
+	private LocalDate deadline;
 
-//	@Column(name = "task-status")
-//	private Boolean isDone;
+	@Column(name = "task-status")
+	private Boolean isDone;
 
-	public ToDo(String taskName, int deadline) {
+	@Column(name = "task-comment")
+	private String taskComment;
+
+
+	public ToDo(String taskName, LocalDate deadline, Boolean isDone, String taskComment) {
 		this.taskName = taskName;
 		this.deadline = deadline;
+		this.isDone = isDone;
+		this.taskComment = taskComment;
 	}
 
 	public long getId(ToDo item) {
@@ -59,22 +57,38 @@ public class ToDo {
 		this.taskName = taskName;
 	}
 
-	public int getDeadline() {
+	public LocalDate getDeadline() {
 		return deadline;
 	}
 
-	public void setDeadline(int deadline) {
+	public void setDeadline(LocalDate deadline) {
 		this.deadline = deadline;
 	}
 
-//	public Boolean getDone() {
-//		return isDone;
-//	}
-//
-//	public void setDone(Boolean done) {
-//		isDone = done;
-//	}
-}
+	private Boolean getDone() {
+		return isDone;
+	}
 
-//https://stackoverflow.com/a/43295074 (look at the comment here)
-//https://stackoverflow.com/a/42620096 (lombok boolean naming issue)
+	private void setDone(Boolean done) {
+		isDone = done;
+	}
+
+	public String getTaskComment() {
+		return taskComment;
+	}
+
+	public void setTaskComment(String taskComment) {
+		this.taskComment = taskComment;
+	}
+
+	@Transient
+	public static ToDo ALL;
+
+	@Transient
+	public static ToDo FINISHED;
+
+	@Transient
+	public static ToDo UNFINISHED;
+
+
+}
