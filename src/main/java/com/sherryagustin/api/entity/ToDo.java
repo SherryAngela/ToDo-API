@@ -1,12 +1,18 @@
 package com.sherryagustin.api.entity;
 
-import javax.persistence.*;
-
+import com.sherryagustin.api.exception.TodoException;
 import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.bind.annotation.RequestBody;
 
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalDate;
 
 @Data
@@ -53,8 +59,9 @@ public class ToDo {
 		return taskName;
 	}
 
-	public void setTaskName(String taskName) {
+	public ToDo setTaskName(@RequestBody String taskName) throws TodoException {
 		this.taskName = taskName;
+		return null;
 	}
 
 	public LocalDate getDeadline() {
@@ -77,18 +84,12 @@ public class ToDo {
 		return taskComment;
 	}
 
-	public void setTaskComment(String taskComment) {
+	public ToDo setTaskComment(String taskComment) {
 		this.taskComment = taskComment;
+		return null;
 	}
 
-	@Transient
-	public static ToDo ALL;
 
-	@Transient
-	public static ToDo FINISHED;
-
-	@Transient
-	public static ToDo UNFINISHED;
 
 
 }

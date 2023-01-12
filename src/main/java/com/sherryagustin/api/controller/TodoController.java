@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -22,7 +23,8 @@ public class TodoController {
 	TodoService todoService;
 
 	@PostMapping("/todos")
-	public ResponseEntity<ToDo> addItem(@Validated @RequestBody ToDo todo)
+	@ResponseBody
+	public ResponseEntity<ToDo> addItem(@RequestBody ToDo todo)
 			throws TodoException {
 		return ResponseEntity.ok(todoService.addItem(todo));
 	}
@@ -33,10 +35,12 @@ public class TodoController {
 	}
 	@GetMapping("/todos/finished")
 	public ResponseEntity<List<ToDo>> getFinishedItemList() {
-		return ResponseEntity.ok(todoService.getAllFinishedItems());}
+		return ResponseEntity.ok(todoService.getAllFinishedItems());
+	}
 	@GetMapping("/todos/unfinished")
 	public ResponseEntity<List<ToDo>> getUnfinishedItemList() {
-		return ResponseEntity.ok(todoService.getAllUnfinishedItems());}
+		return ResponseEntity.ok(todoService.getAllUnfinishedItems());
+	}
 	@GetMapping("/todos/{id}")
 	public ResponseEntity<ToDo> getItemById(@PathVariable Long id) {
 		return ResponseEntity.ok(todoService.getItemById(id));

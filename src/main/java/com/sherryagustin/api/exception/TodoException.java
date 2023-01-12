@@ -11,8 +11,10 @@ public class TodoException extends Exception{
     public static final String INVALID_TASKNAME = "ERROR : Invalid Taskname - Taskname is null";
     public static final String SHORT_TASKNAME = "ERROR : Invalid Taskname - Taskname is too short";
     public static final String LONG_TASKNAME = "ERROR : Invalid Taskname - Taskname is too long";
-    public static final String INVALID_COMMENT = "ERROR : Invalid Comment - Taskname is too null";
-    public static final String LONG_COMMENT = "ERROR : Invalid Comment - Taskname is too long";
+    public static final String INVALID_COMMENT = "ERROR : Invalid Comment - Comment is too null";
+    public static final String SHORT_COMMENT = "ERROR : Invalid Comment - Comment is too short";
+
+    public static final String LONG_COMMENT = "ERROR : Invalid Comment - Comment is too long";
 
 
 
